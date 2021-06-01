@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ExperienceLabel.gd" type="Script" id=1]
+
+[node name="ExperienceLabel" type="Label"]
+margin_left = -57.4327
+margin_top = -32.8187
+margin_right = -17.4327
+margin_bottom = -18.8187
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

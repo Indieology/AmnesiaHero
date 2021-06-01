@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://World/Backgrounds/Tileset/TilesetElement.tres" type="TileSet" id=1]
+
+[node name="Element" type="TileMap"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_tile_origin = 2
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( 2162689, 16, 1, 2162696, 16, 1, 2228225, 16, 1, 2228228, 27, 65539, 2228232, 16, 1, 2293761, 16, 1, 2293768, 16, 1 )

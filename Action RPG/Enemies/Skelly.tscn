@@ -1,0 +1,208 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://Overlap/SoftCollision.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/WanderController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Stats.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Overlap/Hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/PlayerDetectionZone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Overlap/Hitbox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://WhiteColor.shader" type="Shader" id=7]
+[ext_resource path="res://Enemies/Skelly.gd" type="Script" id=8]
+[ext_resource path="res://Shadows/MediumShadow.png" type="Texture" id=9]
+[ext_resource path="res://Enemies/Skeleton/skeleton_down_idle_2.png" type="Texture" id=10]
+[ext_resource path="res://Enemies/Skeleton/skeleton_down_idle_1.png" type="Texture" id=11]
+[ext_resource path="res://Enemies/Skeleton/skeleton_down_walk_1.png" type="Texture" id=12]
+[ext_resource path="res://Enemies/Skeleton/skeleton_down_walk_2.png" type="Texture" id=13]
+[ext_resource path="res://Enemies/Skeleton/skeleton_right_attack_2.png" type="Texture" id=14]
+[ext_resource path="res://Enemies/Skeleton/skeleton_left_attack_2.png" type="Texture" id=15]
+[ext_resource path="res://Enemies/Skeleton/skeleton_down_attack_1.png" type="Texture" id=16]
+[ext_resource path="res://Enemies/Skeleton/skeleton_up_attack_1.png" type="Texture" id=17]
+[ext_resource path="res://Enemies/Skeleton/skeleton_right_attack_1.png" type="Texture" id=18]
+[ext_resource path="res://Enemies/Skeleton/skeleton_up_attack_2.png" type="Texture" id=19]
+[ext_resource path="res://Enemies/Skeleton/skeleton_left_attack_1.png" type="Texture" id=20]
+[ext_resource path="res://Enemies/Skeleton/skeleton_down_attack_2.png" type="Texture" id=21]
+[ext_resource path="res://Enemies/Skeleton/skeleton_right_walk_1.png" type="Texture" id=22]
+[ext_resource path="res://Enemies/Skeleton/skeleton_left_walk_2.png" type="Texture" id=23]
+[ext_resource path="res://Enemies/Skeleton/skeleton_left_walk_1.png" type="Texture" id=24]
+[ext_resource path="res://Enemies/Skeleton/skeleton_right_walk_2.png" type="Texture" id=25]
+[ext_resource path="res://Enemies/Skeleton/skeleton_up_walk_2.png" type="Texture" id=26]
+[ext_resource path="res://Enemies/Skeleton/skeleton_up_walk_1.png" type="Texture" id=27]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/active = false
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "WalkDown",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "WalkLeft",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "WalkRight",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "WalkUp",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "aDown",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "aRight",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "aLeft",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "aUp",
+"speed": 3.0
+} ]
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 5.06086
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 8.11251
+height = 6.73457
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 73.0069
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 4.81696
+
+[sub_resource type="CircleShape2D" id=11]
+radius = 5.93926
+
+[sub_resource type="Animation" id=12]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="Skelly" type="KinematicBody2D"]
+scale = Vector2( 0.9, 0.9 )
+collision_layer = 16
+script = ExtResource( 8 )
+
+[node name="ShadowSprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.439216 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 1 )
+scale = Vector2( 1.2, 1.2 )
+frames = SubResource( 6 )
+animation = "Idle"
+frame = 1
+playing = true
+offset = Vector2( 0, -6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.122, -6 )
+scale = Vector2( 0.8, 1.3 )
+shape = SubResource( 7 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 0.074, -1 )
+scale = Vector2( 0.6, 0.65 )
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( -0.244179, -7.50608 )
+shape = SubResource( 8 )
+
+[node name="Stats" parent="." instance=ExtResource( 3 )]
+max_health = 2
+
+[node name="PlayerDetectionZone" parent="." instance=ExtResource( 5 )]
+visible = false
+scale = Vector2( 1.8, 1 )
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+modulate = Color( 1, 1, 1, 0.454902 )
+shape = SubResource( 9 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 0, 11 )
+scale = Vector2( 1.6, 2.2 )
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0.122086, -7.52938 )
+shape = SubResource( 10 )
+
+[node name="SoftCollision" parent="." instance=ExtResource( 1 )]
+visible = false
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+position = Vector2( 0.244179, -3.05218 )
+shape = SubResource( 11 )
+
+[node name="WanderController" parent="." instance=ExtResource( 2 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Start = SubResource( 12 )
+anims/Stop = SubResource( 13 )
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_started"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
+
+[editable path="Hurtbox"]
+[editable path="PlayerDetectionZone"]
+[editable path="Hitbox"]
+[editable path="SoftCollision"]
